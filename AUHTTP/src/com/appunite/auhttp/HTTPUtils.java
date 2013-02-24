@@ -86,7 +86,7 @@ public class HTTPUtils {
 	 * 
 	 */
 	public static class GetBuilder {
-		private String mUrl;
+		private StringBuilder mUrl;
 		private List<NameValuePair> mParams;
 
 		/**
@@ -96,7 +96,7 @@ public class HTTPUtils {
 		 *            url
 		 */
 		public GetBuilder(String url) {
-			mUrl = url;
+			mUrl = new StringBuilder(url);
 			mParams = new LinkedList<NameValuePair>();
 		}
 		
@@ -106,7 +106,7 @@ public class HTTPUtils {
 		 * @return builder
 		 */
 		public GetBuilder appendPathSegment(String pathSegment) {
-			mUrl += mUrl + "/" + pathSegment;
+			mUrl.append("/").append(pathSegment);
 			return this;
 		}
 
@@ -123,6 +123,24 @@ public class HTTPUtils {
 			mParams.add(new BasicNameValuePair(paramName, param));
 			return this;
 		}
+		
+		/**
+		 * Add get params to url
+		 * 
+		 * @param condition
+		 *            add parameter to url only if this condition is true
+		 * @param paramName
+		 *            name of parameter
+		 * @param param
+		 *            value of parameter
+		 * @return builder
+		 */
+		public GetBuilder addParamIf(boolean condition, String paramName, String param) {
+			if (condition) {
+				mParams.add(new BasicNameValuePair(paramName, param));
+			}
+			return this;
+		}
 
 		/**
 		 * build utf-8 encoded url
@@ -130,7 +148,9 @@ public class HTTPUtils {
 		 * @return utf-8 encoded url
 		 */
 		public String build() {
-			return mUrl + "?" + URLEncodedUtils.format(mParams, "utf-8");
+			return mUrl.append("?")
+					.append(URLEncodedUtils.format(mParams, "utf-8"))
+					.toString();
 		}
 	}
 
