@@ -1,20 +1,43 @@
-AUHTTP/bin/
-AUHTTP/gen/
-AUHTTP/.settings/
-AUHTTP/.project
-AUHTTP/.classpath
-AUHTTP/local.properties
+#Android generated
+bin
+gen
+lint.xml
 
-ExampleAUHTTP/bin/
-ExampleAUHTTP/gen/
-ExampleAUHTTP/.settings/
-ExampleAUHTTP/.project
-ExampleAUHTTP/.classpath
-ExampleAUHTTP/local.properties
+#Eclipse
+.project
+.classpath
+.settings
+.checkstyle
 
+#IntelliJ IDEA
+.idea
+*.iml
+*.ipr
+*.iws
+classes
+gen-external-apklibs
+
+#Maven
+target
+release.properties
+pom.xml.*
+
+#Ant
+build.xml
+ant.properties
+local.properties
+proguard.cfg
+proguard-project.txt
+
+#Gradle
+.gradle
+build
+
+#Other
+.DS_Store
+tmp
+*.swp
 *.tmp
 *.bak
 *.swp
 *.launch
-**/.DS_Store
-.DS_Store
