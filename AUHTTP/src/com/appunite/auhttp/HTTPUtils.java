@@ -237,6 +237,10 @@ public class HTTPUtils {
 
 		HttpEntity entity = response.getEntity();
 
+        if (entity == null) {
+            throw new IOException();
+        }
+
 		Header contentEncoding = response.getFirstHeader("Content-Encoding");
 		if (contentEncoding != null
 				&& contentEncoding.getValue().equalsIgnoreCase("gzip")) {
